@@ -1,0 +1,15 @@
+{
+    "A failed login to your account": "Неудачная попытка входа в Ваш аккаунт",
+    "Account:": "Аккаунт:",
+    "Browser:": "Браузер:",
+    "Hello!": "Здравствуйте!",
+    "If this was you, you can ignore this alert. If you suspect any suspicious activity on your account, please change your password.": "Если это были вы, вы можете проигнорировать это оповещение. Если вы подозреваете подозрительную активность на вашем аккаунте, пожалуйста, измените свой пароль.",
+    "IP Address:": "IP адрес:",
+    "Location:": "Локация:",
+    "Regards,": "С уважением,",
+    "There has been a failed login attempt to your :app account.": "Произошла неудачная попытка входа в вашу учетную запись :app.",
+    "Time:": "Время:",
+    "Unknown City": "Неизвестный город",
+    "Unknown State": "Неизвестный регион",
+    "Your :app account logged in from a new device.": "Вход с нового устройства в вашу учетную запись :app"
+}
