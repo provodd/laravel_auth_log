@@ -8,6 +8,7 @@
 - php artisan migrate
 - php artisan vendor:publish --provider="Provodd\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-views"
 - php artisan vendor:publish --provider="Provodd\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-config"
+- php artisan vendor:publish --provider="Provodd\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-translations"
 - Добавить трейт AuthenticationLoggable в класс User 
 
 ## Команды
