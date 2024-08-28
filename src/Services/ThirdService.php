@@ -7,9 +7,9 @@ class ThirdService extends AbstractService
 
     private static $url = 'https://api.ipregistry.co/';
 
-    public static function getData()
+    public static function getData(): bool|ServiceDto
     {
-        $response = @file_get_contents(self::$url . self::$ip.'?key=tryout');
+        $response = @file_get_contents(self::$url . '?key=tryout');
         if ($response === false) return false;
         $response = json_decode($response);
         if (!isset($response->location->city)) return false;

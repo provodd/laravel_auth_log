@@ -12,10 +12,12 @@ use Provodd\LaravelAuthenticationLog\Notifications\NewDevice;
 use Provodd\LaravelAuthenticationLog\Services\SecondService;
 use Provodd\LaravelAuthenticationLog\Services\ThirdService;
 use Provodd\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Provodd\LaravelAuthenticationLog\Traits\Locatable;
 
 class LoginListener
 {
     public Request $request;
+    use Locatable;
 
     public function __construct(Request $request)
     {
@@ -37,25 +39,17 @@ class LoginListener
                 }
 
                 $ip = $this->request->ip();
-
                 $user = $event->user;
                 $userAgent = $this->request->userAgent();
                 $known = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
                 $newUser = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
-
-                $ip_services = [FirstService::class, ThirdService::class, SecondService::class];
-                foreach ($ip_services as $service) {
-                    if ($ip_data = $service::getData()) {
-                        break;
-                    }
-                }
 
                 $log = $user->authentications()->create([
                     'ip_address' => $ip,
                     'user_agent' => $userAgent,
                     'login_at' => now(),
                     'login_successful' => true,
-                    'location' => $ip_data ?? '',
+                    'location' => $this->getLocation(),
                     'request_payload' => json_encode($this->request->all()),
                 ]);
 

@@ -9,9 +9,11 @@ use Provodd\LaravelAuthenticationLog\Services\FirstService;
 use Provodd\LaravelAuthenticationLog\Services\SecondService;
 use Provodd\LaravelAuthenticationLog\Services\ThirdService;
 use Provodd\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Provodd\LaravelAuthenticationLog\Traits\Locatable;
 
 class FailedLoginListener
 {
+    use Locatable;
     public Request $request;
 
     public function __construct(Request $request)
@@ -46,7 +48,7 @@ class FailedLoginListener
                 'user_agent' => $this->request->userAgent(),
                 'login_at' => now(),
                 'login_successful' => false,
-                'location' => $ip_data,
+                'location' => $this->getLocation(),
                 'request_payload' => json_encode($this->request->all()),
             ]);
 

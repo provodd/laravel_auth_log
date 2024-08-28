@@ -8,6 +8,9 @@ return [
     // The database connection where the authentication_log table resides. Leave empty to use the default
     'db_connection' => null,
 
+    //check geolocation using ip services
+    'use_ip_services' => true,
+
     // The events the package listens for to log
     'events' => [
         'login' => \Illuminate\Auth\Events\Login::class,

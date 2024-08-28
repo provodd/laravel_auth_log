@@ -20,27 +20,23 @@ class OtherDeviceLogoutListener
     {
         $listener = config('authentication-log.events.other-device-logout', OtherDeviceLogout::class);
 
-        if (! $event instanceof $listener) {
+        if (!$event instanceof $listener) {
             return;
         }
 
         if ($event->user) {
-            if(! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
+            if (!in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
                 return;
             }
 
             $user = $event->user;
 
-            if (config('authentication-log.behind_cdn')) {
-                $ip = $this->request->server(config('authentication-log.behind_cdn.http_header_field'));
-            } else {
-                $ip = $this->request->ip();
-            }
+            $ip = $this->request->ip();
 
             $userAgent = $this->request->userAgent();
             $authenticationLog = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->first();
 
-            if (! $authenticationLog) {
+            if (!$authenticationLog) {
                 $authenticationLog = new AuthenticationLog([
                     'ip_address' => $ip,
                     'user_agent' => $userAgent,

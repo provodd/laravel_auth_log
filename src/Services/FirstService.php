@@ -7,9 +7,9 @@ class FirstService extends AbstractService
 
     private static $url = 'http://ip-api.com/json/';
 
-    public static function getData()
+    public static function getData(): bool|ServiceDto
     {
-        $response = @file_get_contents(self::$url . self::$ip);
+        $response = @file_get_contents(self::$url);
         if ($response === false) return false;
         $response = json_decode($response);
         if (!isset($response->status) or $response->status !== 'success') return false;

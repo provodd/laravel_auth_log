@@ -6,25 +6,17 @@ use Illuminate\Http\Request;
 
 class AbstractService
 {
-
-    protected static $ip;
-
-    public function __construct($ip = false)
+    public static function getData(): bool|ServiceDto
     {
-        $this->ip = $ip ?? request()->ip();
-    }
-
-    public static function getData()
-    {
-
+        return false;
     }
 
     public static function toDto(mixed $response): ServiceDto
     {
-
+        return new ServiceDto($response);
     }
 
-    public function toArray(ServiceDto $dto)
+    public function toArray(ServiceDto $dto): array
     {
         return (array)$dto;
     }

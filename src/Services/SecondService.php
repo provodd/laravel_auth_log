@@ -7,9 +7,9 @@ class SecondService extends AbstractService
 
     private static $url = 'http://ipinfo.io/';
 
-    public static function getData()
+    public static function getData(): bool| ServiceDto
     {
-        $response = @file_get_contents(self::$url . self::$ip.'/json');
+        $response = @file_get_contents(self::$url.'json');
         if ($response === false) return false;
         $response = json_decode($response);
         if (!isset($response->city)) return false;
