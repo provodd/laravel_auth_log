@@ -5,7 +5,9 @@
 
 > **@lang('Account:')** {{ $account->email }}<br/>
 > **@lang('Time:')** {{ $time->translatedFormat('j F Y H:i') }}<br/>
-> **@lang('IP Address:')** {{ $ipAddress }}<br/>
+@if (config('authentication-log.use_ip_services'))
+    > **@lang('IP Address:')** {{ $ipAddress }}<br/>
+@endif
 > **@lang('Browser:')** {{ $browser }}<br/>
 @if ($location && isset($location['city']))
 > **@lang('Location:')** {{ $location['city'] ?? __('Unknown City') }}, {{ $location['state'] ?? __('Unknown State') }}
