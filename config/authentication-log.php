@@ -9,7 +9,7 @@ return [
     'db_connection' => null,
 
     //check geolocation using ip services
-    'use_ip_services' => true,
+    'use_ip_services' => false,
 
     // The events the package listens for to log
     'events' => [
